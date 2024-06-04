@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Flora Flow</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <!-- SDK do Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.8/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.8/firebase-database-compat.js"></script>
+</head>
+<body>
+    <div class="main">
+        <div class="image">
+            <img src="logo.png" alt="Logo" id="logo-image" width="80px">
+        </div>
+        <div class="text">
+            <h1>Bem Vindo ao Flora Flow</h1>
+            <p>Planta escolhida: <span id="data">...</span></p>
+        </div>
+    </div>
+
+  <script>
+    // Configuração do Firebase obtida do console
+    const firebaseConfig = {
+        apiKey: "AIzaSyAQ69VFb-eTKesfpt2NSGjpOPMH1-MSctE",
+        authDomain: "floraflow-2f7b7.firebaseapp.com",
+        databaseURL: "https://floraflow-2f7b7-default-rtdb.firebaseio.com",
+        projectId: "floraflow-2f7b7",
+        storageBucket: "floraflow-2f7b7.appspot.com",
+        messagingSenderId: "505380739285",
+        appId: "1:505380739285:web:a61fa90a40c3dee372ea5c",
+        measurementId: "G-QT59QXSKYD"
+    };
+
+    // Inicializar Firebase
+    firebase.initializeApp(firebaseConfig);
+    const database = firebase.database();
+
+    // Referência ao nó do Realtime Database que você quer acessar
+    const ref = database.ref('planta/planta_escolhida');
+
+    // Obter dados uma vez
+    ref.once('value')
+      .then((snapshot) => {
+        let str = snapshot.val();
+        if (str.charCodeAt(0) < 32 || str.charCodeAt(0) > 126) {
+            str = str.slice(1);
+        }
+        
+        document.getElementById('data').innerText = str;
+      })
+      .catch((error) => {
+        console.error("Erro ao obter dados: ", error);
+      });
+  </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+body {
+   color: #008037;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   font-family: 'Open Sans', sans-serif;
+}
+
+.main {
+    display: flex;
+    align-items: center;
+    padding-top: 17%;
+}
+
+p {
+    font-size: 20px;
+    margin: 0
+}
+
+h1 {
+    margin: 3px;
+    margin-left: 0;
+}
+
+.text {
+    padding-left: 10px;
+}
